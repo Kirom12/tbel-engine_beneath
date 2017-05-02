@@ -34,17 +34,19 @@ function PrintErr(_text)
 
 function PrintGrid(Array)
 {
+	console.log(Array[2]);
 	let lines = [];
 	lines[0] = "";
 
 	for (let x = 0; x < Array.length; x++)
 	{
-		lines[0] += "|" + ((x.toString().length == 2) ? x : "0"+x);
+		lines[0] += "|" + ((x.toString().length == 2) ? x : "0"+(x));
 
 		lines[x+1] = "";
 
 		for (let y = 0; y < Array.length; y++)
 		{
+			console.log(Array[x][y]);
 			lines[x+1] += "|" + ((Array[x][y].toString().length == 2) ? Array[x][y] : "0"+Array[x][y]);
 		}
 
@@ -53,6 +55,6 @@ function PrintGrid(Array)
 
 	for (let i in lines)
 	{
-		console.log(((i.toString().length == 2) ? i : "0"+i) + lines[i]);
+		console.log((((i-1).toString().length == 2) ? (i-1) : "0"+(i-1)) + lines[i]);
 	}
 }

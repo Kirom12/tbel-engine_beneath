@@ -61,11 +61,9 @@ function PlayScene()
 
 			this.GameObjects.push(new EnemyObject(this.ObjectsGrid, this.gridWidth, this.Grid.caseLength, 12, 12));
 
-			//console.log(this.ObjectsGrid);
-
-			PrintGrid(this.ObjectsGrid);
-
 			this.Propagation = new PropagationObject(this.ObjectsGrid, this.gridWidth, 0, 0);
+
+			this.Propagation.Start();
 
 			this.started = true;
 			Print('System:Scene ' + this.name + " Started !");
@@ -91,6 +89,8 @@ function PlayScene()
 			}
 
 			this.Grid.DrawMultidimensionnalArray(true);
+
+			this.Propagation.Propagation();
 		}
 		if (Application.debugMode) 
 		{

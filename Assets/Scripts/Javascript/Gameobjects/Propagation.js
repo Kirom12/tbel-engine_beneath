@@ -77,13 +77,12 @@ function PropagationObject(Tiles, gridWidth, originX, originY, casesPropagation)
 		{
 			for (let y = 0; y < this.PropagationTiles.length; y++)
 			{
-
-				if (this.PropagationTiles[x][y] === 1 || this.PropagationTiles[x][y] === 2)
+				if (this.PropagationTiles[x][y] === 1 || this.PropagationTiles[x][y] === 50)
 				{
+
+					console.log("AH");
 					for (let i = 0; i < this.checkArrayPropagation.length; i++)
 					{
-
-						//console.log(this.Grid.Tiles.length);
 						
 						//World bounds
 						if (x+this.checkArrayPropagation[i][0] < 0 || x+this.checkArrayPropagation[i][0] > this.Grid.Tiles.length-1) continue;
@@ -101,7 +100,7 @@ function PropagationObject(Tiles, gridWidth, originX, originY, casesPropagation)
 					//console.log(this.PropagationTiles);
 				}
 
-				if (this.contactTilesCheck)
+				/*if (this.contactTilesCheck)
 				{
 
 					console.log(this.contactTilesCheck.Grid.Tiles[x][y]);
@@ -112,7 +111,7 @@ function PropagationObject(Tiles, gridWidth, originX, originY, casesPropagation)
 					// {
 					// 	console.log("DETECT");
 					// }
-				}
+				}*/
 			}
 		}
 
@@ -420,6 +419,7 @@ function PropagationObject(Tiles, gridWidth, originX, originY, casesPropagation)
 				this.PropagationTiles[x] = [];
 				this.PropagationTilesNew[x] = [];
 			}
+
 
 			this.PropagationTiles = this.Grid.CloneArray(this.Grid.Tiles);
 			this.Grid.ResetGrid(this.PropagationTiles); //BAD
