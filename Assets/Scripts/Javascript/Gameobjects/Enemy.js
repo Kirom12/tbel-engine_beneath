@@ -442,29 +442,9 @@ function EnemyObject(ObjectsGrid, gridWidth, gridCaseLength, gridX, gridY, Playe
 			//Update grid 
 			this.ObjectsGrid[this.Transform.Coord.x][this.Transform.Coord.y] = this.gridId;
 
-			this.PropagationObject = new PropagationObject(this.ObjectsGrid, this.gridWidth, this.Transform.Coord.x, this.Transform.Coord.y, 4, this.PlayerPropagationObject);
+			//this.PropagationObject = new PropagationObject(this.ObjectsGrid, this.gridWidth, this.Transform.Coord.x, this.Transform.Coord.y, 4, this.PlayerPropagationObject);
 		}
 
-		
-		if (this.PropagationObject)
-		{
-			this.PropagationObject.Start();
-			if (this.PropagationObject.casesPropagation > 0)
-			{
-				if (this.PropagationObject.Time + this.PropagationObject.refreshTime < Time.Time)
-				{
-					this.PropagationObject.Time = Time.Time;
-					this.PropagationObject.Propagation(2);
-					this.PropagationObject.casesPropagation--;
-				}
-			}
-			else
-			{
-				//this.PropagationObject.Grid.ResetGrid(this.PropagationObject.Grid.Tiles);
-			}
-
-			this.PropagationObject.Grid.DrawMultidimensionnalArray();
-		}
 
 
 		ctx.fillStyle = 'blue';

@@ -26,7 +26,7 @@
  *
  *
  * */
-function PropagationObject(Tiles, gridWidth, originX, originY, casesPropagation, contactTilesCheck = null) 
+function PropagationObject(Tiles, gridWidth, originX, originY, casesPropagation) 
 {
 	this.name = "Propagation";
 	this.enabled = true;
@@ -68,8 +68,6 @@ function PropagationObject(Tiles, gridWidth, originX, originY, casesPropagation,
 	this.refreshTime = 5;
 	this.Time = Time.Time;
 
-	this.contactTilesCheck = contactTilesCheck;
-
 	this.Propagation = function(_caseType = 1)
 	{
 		let caseType = _caseType;
@@ -79,6 +77,7 @@ function PropagationObject(Tiles, gridWidth, originX, originY, casesPropagation,
 		{
 			for (let y = 0; y < this.PropagationTiles.length; y++)
 			{
+
 				if (this.PropagationTiles[x][y] === 1 || this.PropagationTiles[x][y] === 2)
 				{
 					for (let i = 0; i < this.checkArrayPropagation.length; i++)
@@ -89,29 +88,8 @@ function PropagationObject(Tiles, gridWidth, originX, originY, casesPropagation,
 						//World bounds
 						if (x+this.checkArrayPropagation[i][0] < 0 || x+this.checkArrayPropagation[i][0] > this.Grid.Tiles.length-1) continue;
 						if (y+this.checkArrayPropagation[i][1] < 0 || y+this.checkArrayPropagation[i][1] > this.Grid.Tiles.length-1) continue;
-						//Obstacle
-						// switch(this.Grid.TilesNew[x+this.checkArrayPropagation[i][0]][y+this.checkArrayPropagation[i][1]])
-						// {
-						// 	case 2: //Obstacle
-						// 		break;
-						// 	case 3:
-						// 		break;
-						// 	default:
-						// }
 
-						if (this.contactTilesCheck)
-						{
-							console.log(this.contactTilesCheck.Grid.Tiles[x+this.checkArrayPropagation[i][0]][y+this.checkArrayPropagation[i][1]]);
-
-							if(this.contactTilesCheck.Grid.Tiles[x+this.checkArrayPropagation[i][0]][y+this.checkArrayPropagation[i][1]] === 1)
-							{
-								console.log("DETECT");
-							}
-						}
-
-
-
-						//console.log(this.Grid.TilesNew);
+						
 						this.Grid.TilesNew[x+this.checkArrayPropagation[i][0]][y+this.checkArrayPropagation[i][1]] = this.PropagationTilesNew[x+this.checkArrayPropagation[i][0]][y+this.checkArrayPropagation[i][1]] = caseType;
 					}
 
@@ -121,6 +99,19 @@ function PropagationObject(Tiles, gridWidth, originX, originY, casesPropagation,
 					// if (y-1 > -1 && this.Grid.TilesNew[x][y-1] != 2) this.Grid.TilesNew[x][y-1] = this.PropagationTilesNew[x][y-1] = 1;
 					// if (y+1 < this.Grid.Tiles.length && this.Grid.TilesNew[x][y+1] != 2) this.Grid.TilesNew[x][y+1] = this.PropagationTilesNew[x][y+1] = 1;
 					//console.log(this.PropagationTiles);
+				}
+
+				if (this.contactTilesCheck)
+				{
+
+					console.log(this.contactTilesCheck.Grid.Tiles[x][y]);
+
+
+
+					// if (this.contactTilesCheck.Grid.Tiles[x][y] === 1 )
+					// {
+					// 	console.log("DETECT");
+					// }
 				}
 			}
 		}

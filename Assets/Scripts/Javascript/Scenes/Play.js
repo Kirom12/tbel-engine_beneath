@@ -29,6 +29,8 @@ function PlayScene()
 
 	this.ObjectsGrid = [];
 
+	this.Propagation;
+
 	/**
 	 * Called at the instruction new Scene().
 	 * */
@@ -52,10 +54,18 @@ function PlayScene()
 			this.Grid.SetToMultidimensionnalArray();
 			this.ObjectsGrid = this.Grid.CloneArray(this.Grid.Tiles);
 
+
 			this.GameObjects.push(new PlayerObject(this.ObjectsGrid, this.gridWidth, this.Grid.caseLength, 2, 2));
 
+			//console.log(this.GameObjects[0].PropagationObject);
 
-			this.GameObjects.push(new EnemyObject(this.ObjectsGrid, this.gridWidth, this.Grid.caseLength, 12, 12, this.GameObjects[0].PropagationObject));
+			this.GameObjects.push(new EnemyObject(this.ObjectsGrid, this.gridWidth, this.Grid.caseLength, 12, 12));
+
+			//console.log(this.ObjectsGrid);
+
+			PrintGrid(this.ObjectsGrid);
+
+			this.Propagation = new PropagationObject(this.ObjectsGrid, this.gridWidth, 0, 0);
 
 			this.started = true;
 			Print('System:Scene ' + this.name + " Started !");

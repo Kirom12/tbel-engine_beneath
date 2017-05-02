@@ -61,8 +61,6 @@ function PlayerObject(ObjectsGrid, gridWidth, gridCaseLength, gridX, gridY)
 	this.refreshMovement = 100;
 	this.Time = Time.Time;
 
-	this.PropagationObject = new PropagationObject(this.ObjectsGrid, this.gridWidth, this.Transform.Coord.x, this.Transform.Coord.y, 4);
-
 	/**
 	 * @function SetPosition
 	 * @memberof GameObjects/GameObjects
@@ -436,33 +434,7 @@ function PlayerObject(ObjectsGrid, gridWidth, gridCaseLength, gridX, gridY)
 
 			//Update grid 
 			this.ObjectsGrid[this.Transform.Coord.x][this.Transform.Coord.y] = this.gridId;
-
-			if (Input.KeyPress)
-			{
-				this.PropagationObject = new PropagationObject(this.ObjectsGrid, this.gridWidth, this.Transform.Coord.x, this.Transform.Coord.y, 4);
-			}
 		}
-
-		
-		if (this.PropagationObject)
-		{
-			this.PropagationObject.Start();
-			if (this.PropagationObject.casesPropagation > 0)
-			{
-				if (this.PropagationObject.Time + this.PropagationObject.refreshTime < Time.Time) {
-					this.PropagationObject.Time = Time.Time;
-					this.PropagationObject.Propagation();
-					this.PropagationObject.casesPropagation--;
-				}
-			}
-			else
-			{
-				//this.PropagationObject.Grid.ResetGrid(this.PropagationObject.Grid.Tiles);
-			}
-
-			this.PropagationObject.Grid.DrawMultidimensionnalArray();
-		}
-
 
 		ctx.fillStyle = '#FF45D0';
 		ctx.fillRect(this.Transform.Coord.x*this.gridCaseLength, this.Transform.Coord.y*this.gridCaseLength, this.gridCaseLength, this.gridCaseLength);
